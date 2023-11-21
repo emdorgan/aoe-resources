@@ -8,13 +8,6 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import './../react-big-calendar.css';
 
-const createDateRange = (dateRange: string): {start: moment.Moment, end: moment.Moment} => {
-    const dates = dateRange.split(" - ");
-    const startDate = moment(dates[0], "MMM D, YYYY");
-    const endDate = moment(dates[1], "MMM D, YYYY");
-    return {start: startDate, end: endDate};
- }
-
 const sTierTournamentUrl = process.env.REACT_APP_S_TIER_URL;
 const localizer = momentLocalizer(moment);
 
@@ -38,8 +31,7 @@ const Home = () => {
     console.log(tournamentList);
 
     const tournamentEvents = tournamentList.map(tournament => {
-        const dateRange = createDateRange(tournament.date.text)
-        return {title: tournament.tournament.text, start: dateRange.start.format("MMMM D, YYYY"), end: dateRange.start.format("MMMM D, YYYY")}
+        return {title: tournament.tournament.text, start: moment(tournament.startDate, "MMM D, YYYY"), end: moment(tournament.endDate, "MMM D, YYYY")};
     })
 
     console.log(tournamentEvents)

@@ -13,4 +13,6 @@ export type Tournament = {
     "runner-up": TextAndWikiLink;
     tier: TextAndWikiLink;
     tournament: TextAndWikiLink;
+    startDate : string;
+    endDate: string;
 };
